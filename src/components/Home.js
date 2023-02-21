@@ -3,6 +3,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './Home.css'
 
 function Home() {
     useEffect(() => {
@@ -41,7 +42,7 @@ function Home() {
             <div>
                 <Slider {...setting}>
                     {news.map((value) => (
-                        <div>
+                        <div className='card'>
                             <img src={value.yoast_head_json.og_image[0].url} key={value.id} alt="..." className="image2"></img>
                             <h5 className="textHome1">{value.yoast_head_json.title}</h5>
                             <p className="textHome2">{value.yoast_head_json.description}</p>

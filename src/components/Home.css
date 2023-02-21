@@ -1,0 +1,22 @@
+.card{
+    height: 650px;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+  }
+  
+  .image2{
+    height: 500px;
+    width: 700px;
+    justify-content: center;
+    align-items: center;
+    left: 100px;
+    margin-left: 250px;
+  }
+  .textHome1{
+    margin-top: 20px;
+  }
+  
+  .textHome2{
+    margin-top: 10px;
+  }
