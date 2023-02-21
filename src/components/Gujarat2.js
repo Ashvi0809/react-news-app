@@ -3,14 +3,14 @@ import  axios from 'axios'
 import { Link } from 'react-router-dom'
 
 
-const Page2 = () => {
+const Gujarat2 = () => {
     const[data,setData] =useState([]);
 
     useEffect(() => {
         getdata()
     })
   const getdata = async(data) => {
-  await  axios.get("https://timenews.co.in/wp-json/wp/v2/posts?categories=3&page=2",data).then(res =>{
+  await  axios.get("https://timenews.co.in/wp-json/wp/v2/posts?categories=11&page=2",data).then(res =>{
 
    
     setData(res.data)
@@ -44,13 +44,13 @@ const Page2 = () => {
     <li class="page-item ">
       <Link class="page-link" to="/" tabindex="-1">Previous</Link>
     </li>
-    <li class="page-item"><Link class="page-link" to="/page2">1</Link></li>
+    <li class="page-item"><Link class="page-link" to="/gujarat2">1</Link></li>
     <li class="page-item disabled">
       <Link class="page-link" to="" tabindex="-1" aria-disabled="true">2</Link>
     </li>
-    <li class="page-item"><Link class="page-link" to="/page3">3</Link></li>
+    <li class="page-item"><Link class="page-link" to="/gujarat3">3</Link></li>
     <li class="page-item">
-      <Link class="page-link" to="/page3">Next</Link>
+      <Link class="page-link" to="/gujarat3">Next</Link>
     </li>
   </ul>
 </nav>
@@ -58,4 +58,4 @@ const Page2 = () => {
   )
 }
 
-export default Page2
+export default Gujarat2

@@ -1,73 +1,56 @@
-import React,{ useEffect, useState }  from 'react';
-import  axios from 'axios'
-import { Link } from 'react-router-dom'
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
+function Home() {
+    useEffect(() => {
+        getAllNews();
+    }, []);
+    const [news, setNews] = useState([]);
+    const getAllNews = async () => {
+        await axios.get('https://timenews.co.in/wp-json/wp/v2/posts').then((res) => {
+            setNews(res.data);
+        });
+    };
 
+    // const CustomPrevArrow = (props) => (
+    //     <div className="prev-arrow" onClick={props.onClick}>
+    //         <i className="fas fa-chevron-left"></i>
+    //     </div>
+    // );
 
-const Home = () => {
-  const[data,setData] =useState([]);
+    // const CustomNextArrow = (props) => (
+    //     <div className="next-arrow" onClick={props.onClick}>
+    //         <i className="fas fa-chevron-right"></i>
+    //     </div>
+    // );
 
-  useEffect(() => {
-      getdata()
-  }, [])
-const getdata = async(data) => {
-await  axios.get("https://timenews.co.in/wp-json/wp/v2/posts",data).then(res =>{
+    const setting = {
+        dots: true,
+        infinite: true,
+        speed: 5,
+        slidesToShow: 1,
+        slidesToScroll: 1,
 
- 
-  setData(res.data)
-})
-}
-  return (
-    <div>
-     
-  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-     
-     {
-            data.map((items) => (
-        
-          <>
-           <div className="carousel-inner bg-dark">
-    <div className="carousel-item active">
-      <img src={items.yoast_head_json.og_image[0].url} className="d-block w-100" alt=""/>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>{items.title.rendered}</h5>
-        <p>{items.excerpt.rendered}</p>
-      </div>
-    </div>
-    </div>
-          </>
-               
-            ))
-        }
-         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+    };
+    return (
+        <div className="mx-auto">
+           
+            <div>
+                <Slider {...setting}>
+                    {news.map((value) => (
+                        <div>
+                            <img src={value.yoast_head_json.og_image[0].url} key={value.id} alt="..." className="image2"></img>
+                            <h5 className="textHome1">{value.yoast_head_json.title}</h5>
+                            <p className="textHome2">{value.yoast_head_json.description}</p>
+                        </div>
+                    ))}
+                </Slider>
+            </div>
         </div>
-
-        <nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <Link class="page-link" to="" tabindex="-1" aria-disabled="true">Previous</Link>
-    </li>
-    <li class="page-item disabled">
-      <Link class="page-link" to="" tabindex="-1" aria-disabled="true">1</Link>
-    </li>
-  
-    <li class="page-item"><Link class="page-link" to="/page2">2</Link></li>
-    <li class="page-item"><Link class="page-link" to="/page3">3</Link></li>
-    <li class="page-item">
-      <Link class="page-link" to="/page2">Next</Link>
-    </li>
-  </ul>
-</nav>
-    </div>
-
-  )
+    );
 }
 
-export default Home
+export default Home;

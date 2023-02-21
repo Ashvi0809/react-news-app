@@ -23,17 +23,16 @@ const Page3 = () => {
        {
               data.map((items) => (
           
-            <>
-             <div className="carousel-inner bg-dark">
-      <div className="carousel-item active">
-        <img src={items.yoast_head_json.og_image[0].url} className="d-block w-100" alt=""/>
-        <div class="carousel-caption d-none d-md-block">
-          <h5>{items.title.rendered}</h5>
-          <p>{items.excerpt.rendered}</p>
-        </div>
-      </div>
-      </div>
-            </>
+                <>
+                <div class="card mx-auto rounded pd-3 mt-2 text-light " style={{width: 700}} >
+      <img src={items.yoast_head_json.og_image[0].url} class="card-img-top" alt='' />
+      <div class="card-body" style={{backgroundColor:'RebeccaPurple'}}>
+      <h5 class="card-title" dangerouslySetInnerHTML={{__html: items.title.rendered}}></h5>
+      <p class="card-text" dangerouslySetInnerHTML={{__html: items.excerpt.rendered}}></p>
+      <Link to={`/button/${items.id}`} ><button>Read more</button></Link>
+    </div>
+    </div>
+                </>
                  
               ))
           }
